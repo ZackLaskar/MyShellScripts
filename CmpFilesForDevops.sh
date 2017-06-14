@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SourceDir="/Users/Muzakkir/PycharmProjects/Test"
+SourceDir="/Users/Muzakkir/Test"
 check=$SourceDir"/check.txt"   # check.txt will have entries of all the sql files in SourceDir
 
 # Below command finds all sqls in the SourceDir and makes an entry of sql file names in a temp file called tmp.txt
@@ -15,7 +15,7 @@ else
 	echo ""
 	echo "Check.txt is not Empty."
 	echo "Comparing sql files in this directory with the files names in check.txt.."
-	# grep -vf get the diff between contents of the two files, check.txt & tmp.txt should be in same order in the cmd.
+	# grep -vf gets the diff between contents of the two files, check.txt & tmp.txt should be in same order as  in the cmd.
 	
 	if [[ $(grep -vf check.txt tmp.txt) ]]; then
 		echo ""
