@@ -3,9 +3,10 @@
 SourceDir="/Users/Muzakkir/PycharmProjects/Test"
 check=$SourceDir"/check.txt"   # check.txt will have entries of all the sql files in SourceDir
 
-# Below command finds all sqls in the SourceDir and makes an entry of sql file names in a temp file called tmp.txt
 
 findCksumCopy2temp () {
+	
+	# This function finds all sqls in the SourceDir and makes an entry of sql file names in a temp file called tmp.txt
 
 	if [[ $(find $1 -maxdepth 1 -type f -name '*.'$2) ]];then
 		basename `find $1 -maxdepth 1 -type f -name '*.'$2` > $1/tmp.txt
@@ -22,6 +23,9 @@ findCksumCopy2temp () {
 
 
 Compare() {
+	
+	# This function checks if the sqls in the directory are new then executes those sqls
+	# If old sqls there, then compares latest cksum with the old cksum, incase of any difference the rollbacks are run and then the modified sqls are exceuted. 
 
 	for f in "$@"
 	do
@@ -33,7 +37,7 @@ Compare() {
 			if [ "$Checktxt_Cksum" != "$Latest_Cksum" ];then
 				echo "   * "$f"'s cksum is different"
 				f=`echo $f | cut -d"." -f1`
-				echo "   * executing the "$f".rollback.sql"
+				[ -f "$f".rollback.sql  ] && echo "   * executing the "$f".rollback.sql" || echo "     "$f".rollback.sql does not exist"
 			fi
 		else	
 			# below variable stores all the new sqls filenames in it.
@@ -42,7 +46,7 @@ Compare() {
 	done
 
 	if [[ ! -z $new ]];then
-		echo "Following are new sqls :"'\n'$newa
+		echo "Following are new sqls :"'\n'$new
 	fi
 	
 }
@@ -61,3 +65,5 @@ else
 fi
 
 mv $SourceDir/temp.txt $check
+
+
