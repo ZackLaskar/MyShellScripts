@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SourceDir="/Users/Muzakkir/PycharmProjects/Test"
+SourceDir="/Users/Muzakkir/Test"
 check=$SourceDir"/check.txt"   # check.txt will have entries of all the sql files in SourceDir
 
 findCksumCopy2temp() {
