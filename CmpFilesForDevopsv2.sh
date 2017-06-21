@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ksh
 
 timestamp=`date +%m%h%y.%H%M%S`
 SourceDir="/Users/Muzakkir/Test"
