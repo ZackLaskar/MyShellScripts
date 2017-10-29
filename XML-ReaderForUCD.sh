@@ -1,6 +1,6 @@
 #!/bin/ksh
 
-# script is for an urbancode deploy process template with reads XML and does stuff it needs to do.
+# script is for an urbancode deploy process template which reads XML and does stuff it needs to do.
  
 
 IFS="," read -rA LocalQueueName <<< ${p:XMLReader/MQ.localQueues.localQname}
